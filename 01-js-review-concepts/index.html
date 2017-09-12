@@ -10,7 +10,7 @@
 
     */
 
-    console.log(">>>>>>>> Types s");
+    console.log(">>>>>>>> Types");
 
     // Define a String
     var str = "Hello";
@@ -32,14 +32,14 @@
     var eight = 8;
     var third = 33.33333;
     var total = eight + third;
-    console.log(total);
+    console.log("the total is: " + total);
     // Sometimes numbers aren't exactly what you expect.
     var huh = total + 0.3;
-    console.log(huh); // Should have been 6.63333
+    console.log("huh is: " + huh); // Should have been 6.63333
     // It's okay just round off
     console.log(Math.round(huh));
     // Or convert to a string with a fixed decimal place
-    console.log(huh.toFixed(2)); // This returns a String!
+    console.log("fixed huh is: " + huh.toFixed(2)); // This returns a String!
 
     console.log(">>>>>>>> Testing for Strings and Numbers");
     // Since variables are not types you will want to check the type at times:
@@ -157,11 +157,12 @@
     // array.filter() returns a new array containing items from the original array.
     // Define parameter array that evaluates and item returing true if the item should
     // be included or false if not.
+    // console.log("onlyStrings before is: " + copiedArray);
     var onlyStrings = copiedArray.filter(function(item){
         return typeof item === "string"; // True if item is a string!
     });
 
-    console.log(onlyStrings);
+    // console.log("onlyStrings after is: " + onlyStrings);
 
     // Lets do that again
 
@@ -192,6 +193,7 @@
 
 
     // Reduce returns a culumative value by applying each value in the array to a function
+    console.log("copiedArray before reduce: " + copiedArray);
     var wtf = copiedArray.reduce(function(a, b) {
         return a + b;
     });
@@ -216,28 +218,91 @@
 
     // Create a function that takes a name and title and returns an object containing these two properties
     // The object should look something like: {name: "Rudolf", title: "leader of the pack"}
-
+    function objectMaker(name, title){
+        var description = {
+            name: name,
+            title: title
+        }
+        return description;
+    }
+    console.log(objectMaker("Tassos", "Greek God"));
     // Define an array (nameTitle) then push 5 name/title objects from your function.
+    var nameTitle = [];
+    nameTitle.push(objectMaker("Kadeem", "Goat"));
+    nameTitle.push(objectMaker("Tassos", "Greek God"));
+    nameTitle.push(objectMaker("Michael", "VR Man"));
+    nameTitle.push(objectMaker("Corey", "Funny Man"));
+    nameTitle.push(objectMaker("Alex", "Which One?"));
+    nameTitle.push(objectMaker("Mitchell", "SoggyBag"));
+    console.log(nameTitle);
 
     // Write a function that takes a letter (a, b, c, etc) and returns an array containg all of the
     // names from nameTitle that begin with that letter. Use array.filter.
+    function letterChecker(letter) {
+        var letterChecked = nameTitle.filter(function(object){
+            // console.log(object.name);
+            // console.log(letter);
+            return object.name[0] == letter;
+        });
+        return letterChecked;
+    }
+    console.log(letterChecker("T"));
 
     // Write a function takes a title, and returns an array of all objects that have a matching title.
     // Use filter again.
-
+    function titleChecker(title) {
+        var titleChecked = nameTitle.filter(function(object){
+            // console.log(object.title);
+            // console.log(title);
+            return object.title == title;
+        });
+        return titleChecked;
+    }
+    console.log(titleChecker("SoggyBag"));
     // Write a function that returns an array containing strings made from the names and titles.
     // Each string should look like: "Name Title" or "Diana the duchess of york" or something similar.
     // Use array.map().
+    var nameTitleCombiner = nameTitle.map(function(object){
+        return (object.name + ", The " + object.title);
+    });
+    console.log(nameTitleCombiner)
 
     // Create an array of random numbers. Bonus: Use a loop and add 100 random numbers or write a function to return an array of any number of random numbers.
+    var randomNumArray = [];
+    function randomNumberGen(){
+        for (var i = 0; i < 100; i++){
+            randomNumArray.push(Math.floor(Math.random() * 100));
+        }
+    }
+    randomNumberGen();
+    console.log(randomNumArray);
 
     // Write a function that returns an aray of all numbers 0.5 and above. use filter, map, or reduce.
+    var numAboveFifty = randomNumArray.filter(function(num){
+        return num > 50;
+    });
+    console.log(numAboveFifty);
 
     // Write a function that returns an array of all numbers below 0.5. Use filter, map, or reduce.
+    var numBelowFifty = randomNumArray.filter(function(num){
+        return num < 50;
+    });
+    console.log(numBelowFifty);
 
     // Write a function that returns the total of all random numbers. Use filter, map, or reduce.
+    var numSum = randomNumArray.reduce(function(a,b){
+        return a + b;
+    });
+    console.log("The total sum is: "  + numSum);
 
     // Write a function that returns the average of all of the random numbers. Use filter, map, or reduce.
+    function numAverage(){
+        var numSum = randomNumArray.reduce(function(a,b){
+            return a + b;
+        });
+        return (numSum / randomNumArray.length);
+    }
+    console.log("The average is: "  + numAverage());
 
 
 </script>
