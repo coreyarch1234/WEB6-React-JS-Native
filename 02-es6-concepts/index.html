@@ -147,6 +147,11 @@
     const weatherArray = [satWeather, sunWeather, monWeather];
     console.log(monWeather);
 
+    weatherArray.reduce((sum, item) => {
+        sum += item.temp;
+    }, 0);
+
+
 
     // Use reduce to calculate the average temp for all objects.
     var tempArray = weatherArray.map((weather) =>{
